@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Etch-A-Sketch</title>
+  <meta name="description" content="Etch">
+  <meta name="author" content="Andrew">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <h1>Etch-A-Sketch</h1>
+  <button id ="reset">Reset Board</button>
+
+  <form>
+    Select your Sketch size:
+    <select id="mySelect">
+      <option>4x4</option>
+      <option>10x10</option>
+      <option>12x12</option>
+      <option>16x16</option>
+    </select>
+    <input type="button" onclick="setGrid()" value="Set Size">
+  </form>
+
+
+  <div id ="container">
+
+  </div>
+
+  <script src="myScript.js"></script>
+</body>
+</html>
