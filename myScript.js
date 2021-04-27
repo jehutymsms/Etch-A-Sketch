@@ -1,32 +1,48 @@
+//Variable for Container div
+const container = document.getElementById("container");
+
 
 
 // Sets number of grid blocks
 function gridNumber(x){
     for (i=0;i<x;i++){
         let tag = document.createElement("div");
-        // let tic = document.createTextNode(x+1);
-        // tag.appendChild(tic);
         tag.className = "block";
-        document.getElementById("container").appendChild(tag);
+        tag.id = "block" + i
+        container.appendChild(tag);
         }
+    //Variable for new divs created by grid
+    const block = document.getElementsByClassName("block");
+    let bock = Array.from(block);
+    bock.forEach(el => el.addEventListener('mouseover', event => {
+        el.classList.add("blocks");
+    }));
+
     }
 
-// Sets number of Columns and Rows
+
+
+
+// Change div Color
+// function divChange(){
+
+// }
+
+// Sets number of Columns and Rows and removes previous 
 function gridSize(x){
 
-    document.getElementById("container").style.removeProperty('gridTemplateColumns');
-    document.getElementById("container").style.removeProperty('gridTemplateRows');
+    container.style.removeProperty('gridTemplateColumns');
+    container.style.removeProperty('gridTemplateRows');
     
-    document.getElementById("container").style.gridTemplateColumns = `repeat(${x}, 50px)`;
-    document.getElementById("container").style.gridTemplateRows = `repeat(${x}, 50px)`;
+    container.style.gridTemplateColumns = `repeat(${x}, 50px)`;
+    container.style.gridTemplateRows = `repeat(${x}, 50px)`;
 }
 
-// initiates board size based on selection
+// board size based on selection
 function setGrid() {
     let x = document.getElementById("mySelect");
     let y = parseInt(x.options[x.selectedIndex].text)
     
-    const container = document.getElementById("container")
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
@@ -36,7 +52,6 @@ function setGrid() {
 
 //Reset Board to Default Size 4x4
 function resetBoard(){
-    const container = document.getElementById("container")
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
@@ -49,13 +64,8 @@ let reset = document.getElementById("reset");
 reset.onclick = function(){
     resetBoard()
 }
-// Set Size Button Action
-let set = document.getElementsByTagName('input')[0];
-set.onclick = function(){
-    resetBoard()
-    setGrid()
-}
 
 
 gridNumber(16)
 gridSize(4)
+
