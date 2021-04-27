@@ -29,6 +29,6 @@ body {
     height: 50px;
 }
 
-.block:hover {
+.blocks{
     background-color: red;
   }
