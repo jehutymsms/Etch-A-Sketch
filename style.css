@@ -5,10 +5,14 @@ body {
 #container {
     display: grid;
     margin: auto;
-    width: 80%;
+    width: 90%;
     border: 5px solid black;
     padding: 10px;
     margin-top: 10px;
+    overflow: hidden;
+    justify-content: center;
+    align-content: center;
+    grid-gap: 0px 0px;
 
 }
 
@@ -20,8 +24,9 @@ body {
     display: grid;
     border: 1px solid rgba(0, 0, 0, 0.8);
     background-color: yellow;
-    padding:5px;
     transition-duration: 0.3s;
+    width: 50px;
+    height: 50px;
 }
 
 .block:hover {

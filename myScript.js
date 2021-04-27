@@ -4,8 +4,8 @@
 function gridNumber(x){
     for (i=0;i<x;i++){
         let tag = document.createElement("div");
-        let tic = document.createTextNode(x+1);
-        tag.appendChild(tic);
+        // let tic = document.createTextNode(x+1);
+        // tag.appendChild(tic);
         tag.className = "block";
         document.getElementById("container").appendChild(tag);
         }
@@ -16,16 +16,20 @@ function gridSize(x){
 
     document.getElementById("container").style.removeProperty('gridTemplateColumns');
     document.getElementById("container").style.removeProperty('gridTemplateRows');
-
-    document.getElementById("container").style.gridTemplateColumns = `repeat(${x}, auto)`;
-    document.getElementById("container").style.gridTemplateRows = `repeat(${x}, auto)`;
-    console.log("button pressed")
+    
+    document.getElementById("container").style.gridTemplateColumns = `repeat(${x}, 50px)`;
+    document.getElementById("container").style.gridTemplateRows = `repeat(${x}, 50px)`;
 }
 
 // initiates board size based on selection
 function setGrid() {
     let x = document.getElementById("mySelect");
     let y = parseInt(x.options[x.selectedIndex].text)
+    
+    const container = document.getElementById("container")
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
     gridNumber(y*y)
     gridSize(y)
   }
@@ -36,6 +40,8 @@ function resetBoard(){
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
+    gridNumber(4*4)
+    gridSize(4)
 }
 
 // reset Button Action
@@ -51,5 +57,5 @@ set.onclick = function(){
 }
 
 
-gridNumber(4*4)
+gridNumber(16)
 gridSize(4)
