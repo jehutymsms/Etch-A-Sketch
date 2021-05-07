@@ -18,14 +18,12 @@
   <h1>Etch-A-Sketch</h1>
   <button id ="reset">Reset Board</button>
 
-  <form autocomplete="off">
-    <label for="gridsize">Select your Sketch size:</label>
-    <select id="mySelect" onchange= "setGrid()">
-      <option value ="4x4" selected>4x4</option>
-      <option value ="10x10">10x10</option>
-      <option value ="12x12">12x12</option>
-      <option value ="16x16">16x16</option>
-    </select>
+  <form onsubmit="return false" autocomplete="off">
+    <label for="vol">Grid Area (between 1 and 65):</label>
+    <input type="range" id="size" name="size" min="0" max="65" value="50" step="5">
+    <br>
+    <label id="sizeNumber"></label>
+    <br><br>
   </form>
 
 
