@@ -1,7 +1,5 @@
-//Variable for Container div
+//Variable
 const container = document.getElementById("container");
-
-
 
 // Sets number of grid blocks
 function gridNumber(x){
@@ -11,61 +9,69 @@ function gridNumber(x){
         tag.id = "block" + i
         container.appendChild(tag);
         }
+
     //Variable for new divs created by grid
     const block = document.getElementsByClassName("block");
     let bock = Array.from(block);
-    bock.forEach(el => el.addEventListener('mouseover', event => {
+    bock.forEach(el => el.addEventListener('mouseover', e => {
         el.classList.add("blocks");
     }));
+}
 
-    }
-
-
-
-
-// Change div Color
-// function divChange(){
-
-// }
 
 // Sets number of Columns and Rows and removes previous 
 function gridSize(x){
 
     container.style.removeProperty('gridTemplateColumns');
-    container.style.removeProperty('gridTemplateRows');
+    container.style.removeProperty('gridAutoRows');
     
-    container.style.gridTemplateColumns = `repeat(${x}, 50px)`;
-    container.style.gridTemplateRows = `repeat(${x}, 50px)`;
+    container.style.gridTemplateColumns = `repeat(${x}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${x}, 1fr)`;
 }
 
 // board size based on selection
-function setGrid() {
-    let x = document.getElementById("mySelect");
-    let y = parseInt(x.options[x.selectedIndex].text)
-    
+function setGrid(num) {
+    let x = parseInt(num);
+
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
-    gridNumber(y*y)
-    gridSize(y)
+    if(x == 0){
+        gridNumber(1*1)
+        gridSize(1)
+    }else{
+        gridNumber(x*x)
+        gridSize(x)
+    }
   }
 
-//Reset Board to Default Size 4x4
-function resetBoard(){
-    while (container.firstChild) {
-        container.removeChild(container.firstChild);
-    }
-    gridNumber(4*4)
-    gridSize(4)
+    
+// Set Number on Slider to show on screen
+
+let size = document.getElementById("size"), 
+    sizeNum = document.getElementById("sizeNumber");
+
+size.oninput = function(){
+    sizeNum.innerHTML = this.value;
 }
 
-// reset Button Action
+size.onchange = function(){
+    setGrid(this.value);
+}
+
+// Set Slider Number on page load to default
+window.addEventListener('load', (event) => {
+    return sizeNum.innerHTML = size.defaultValue;
+  });
+
+// reset Board Button Action
 let reset = document.getElementById("reset");
 reset.onclick = function(){
-    resetBoard()
+    let x = document.getElementById('sizeNumber').innerHTML
+    setGrid(x)
 }
 
 
-gridNumber(16)
-gridSize(4)
-
+gridNumber(50*50)
+gridSize(50)
+sliderNumber()
