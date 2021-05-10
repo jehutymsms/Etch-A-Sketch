@@ -2,7 +2,7 @@
 const container = document.getElementById("container");
 
 // Sets number of grid blocks
-function gridNumber(x){
+const gridNumber = x => {
     for (i=0;i<x;i++){
         let tag = document.createElement("div");
         tag.className = "block";
@@ -20,7 +20,7 @@ function gridNumber(x){
 
 
 // Sets number of Columns and Rows and removes previous 
-function gridSize(x){
+const gridSize = x => {
 
     container.style.removeProperty('gridTemplateColumns');
     container.style.removeProperty('gridAutoRows');
@@ -30,7 +30,7 @@ function gridSize(x){
 }
 
 // board size based on selection
-function setGrid(num) {
+const setGrid = num => {
     let x = parseInt(num);
 
     while (container.firstChild) {
@@ -48,28 +48,18 @@ function setGrid(num) {
     
 // Set Number on Slider to show on screen
 
-let size = document.getElementById("size"), 
+const size = document.getElementById("size"), 
     sizeNum = document.getElementById("sizeNumber");
 
-size.oninput = function(){
-    sizeNum.innerHTML = this.value;
-}
-
-size.onchange = function(){
-    setGrid(this.value);
-}
+size.oninput = () => sizeNum.innerHTML = size.value;
+size.onchange = () => setGrid(size.value);
 
 // Set Slider Number on page load to default
-window.addEventListener('load', (event) => {
-    return sizeNum.innerHTML = size.defaultValue;
-  });
+window.addEventListener('load', (event) => sizeNum.innerHTML = size.defaultValue);
 
 // reset Board Button Action
 let reset = document.getElementById("reset");
-reset.onclick = function(){
-    let x = document.getElementById('sizeNumber').innerHTML
-    setGrid(x)
-}
+reset.onclick = () => {setGrid(document.getElementById('sizeNumber').innerHTML)}
 
 
 gridNumber(50*50)
